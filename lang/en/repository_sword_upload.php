@@ -1,4 +1,4 @@
-<?php
+<?php  
 
 // This file is part of Moodle - http://moodle.org/
 //
@@ -16,7 +16,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'repository_cesta', language 'en', branch 'MOODLE_20_STABLE'
+ * Strings for component 'repository_cesta', language 'pt-br', branch 'MOODLE_20_STABLE'
  *
  * @package   repository_cesta
  * @copyright 1999 onwards Martin Dougiamas  {@link http://moodle.com}
@@ -31,39 +31,41 @@
 
 //$string['keyword'] = 'Keyword';
 
-$string['sword_url'] = 'SWORD URL';
-$string['swordurltext'] = 'SWORD url should be: http://yoursite.com/swordv2/servicedocument';
-$string['alfresco:view'] = 'View Sword Upload repository';
-$string['configplugin'] = 'Sword Upload configuration';
-$string['notitle'] = 'notitle';
+$string['sword_url'] = 'URL SWORD';
+$string['swordurltext'] = 'A URL SWORD deve ser no formato: http://seusite.com/swordv2/servicedocument';
+$string['alfresco:view'] = 'Ver Repositório SWORD Upload';
+$string['configplugin'] = 'Configuração SWORD Upload';
+$string['notitle'] = 'Sem título';
 
-$string['pluginname_help'] = 'A plug-in for SWORD Repositories';
-$string['pluginname'] = 'Sword Upload Repository';
-$string['soapmustbeenabled'] = 'SOAP extension must be enabled for sword upload plugin';
-$string['space'] = 'Space';
+$string['pluginname_help'] = 'Um plug-in para repositórios com  SWORD';
+$string['pluginname'] = 'Repositório SWORD Upload';
+//$string['soapmustbeenabled'] = 'SOAP extension must be enabled for sword upload plugin';
+//$string['space'] = 'Space';
 
 //Login
-$string['username'] = 'Username';
-$string['password'] = 'Password';
-$string['send'] = 'Send';
+$string['username'] = 'Usuário';
+$string['password'] = 'Senha';
+$string['send'] = 'Enviar';
 
 //Deposit
-$string['title'] = 'Title';
-$string['abstract'] = 'Abstract';
-$string['description'] = 'Description';
-$string['language'] = 'Language';
-$string['type'] = 'Type';
-$string['subject'] = 'Subject (Separate each with ";")';
-$string['collection'] = 'Collection';
-$string['content'] = 'Content';
+$string['title'] = 'Título';
+$string['abstract'] = 'Resumo';
+$string['description'] = 'Descrição';
+$string['language'] = 'Idioma';
+$string['type'] = 'Tipo';
+$string['subject'] = 'Assunto (Separe cada com ";")';
+$string['collection'] = 'Coleção';
+$string['content'] = 'Referatório / Repositório';
+$string['upload-url'] = 'Envia um link (referatório)';
+$string['upload-file'] = 'Envia um arquivo (repositório)';
 $string['url'] = 'URL';
-$string['file'] = 'File';
-$string['next'] = 'Next';
-$string['author'] = 'Author (Separate each with ";")';
-$string['license'] = 'License';
-$string['license-unknown'] = 'Other';
+$string['file'] = 'Arquivo';
+$string['next'] = 'Próximo';
+$string['author'] = 'Autor (Separe cada com ";")';
+$string['license'] = 'Licença';
+$string['license-unknown'] = 'Outro';
 $string['license-allrightsreserved'] = 'All rights reserved';
-$string['license-public'] = 'Public domain';
+$string['license-public'] = 'Domínio Público';
 $string['license-cc'] = 'Creative Commons';
 $string['license-cc-nd'] = 'Creative Commons - NoDerivs';
 $string['license-cc-nc-nd'] = 'Creative Commons - No Commercial NoDerivs';
@@ -71,4 +73,6 @@ $string['license-cc-nc'] = 'Creative Commons - No Commercial';
 $string['license-cc-nc-sa'] = 'Creative Commons - No Commercial ShareAlike';
 $string['license-cc-sa'] = 'Creative Commons - ShareAlike';
 
-$string['upload_error']= 'An unexpected error occurred, please try again later.';
+$string['upload_error'] = 'Ocorreu um erro inesperado, tente mais tarde.';
+
+

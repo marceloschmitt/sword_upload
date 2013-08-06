@@ -59,7 +59,7 @@ function getAllLicenses() {
         'cc-nc-sa' => array(
             'name-moodle' => 'Creative Commons - No Commercial ShareAlike',
             'name-repositorio' => 'Attribution-NonCommercial-ShareAlike 3.0 Brazil',
-            'uri' => 'http://creativecommons.org/licenses/by-nc-sa/3.0/br',
+            'uri' => 'http://creativecommons.org/licenses/by-nc-sa/3.0/br'
         ),
         'cc-sa' => array(
             'name-moodle' => 'Creative Commons - ShareAlike',
