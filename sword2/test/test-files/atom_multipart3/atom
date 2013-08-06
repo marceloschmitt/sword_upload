@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:dcterms="http://purl.org/dc/terms/">
+	<title>Teste de Depósito sem arquivos</title>
+	<author><name>Jonathan Alba</name></author>
+	<summary>Abstract do depósito sem arquivos</summary>
+	<dcterms:abstract>Abstract do depósito sem arquivos</dcterms:abstract>
+	<dcterms:available>2013</dcterms:available>
+	<dcterms:bibliographicCitation>Videira, Jonathan, Teste de depósito</dcterms:bibliographicCitation>
+	<dcterms:creator>Videira, Jonathan</dcterms:creator>
+</entry>
