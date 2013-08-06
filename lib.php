@@ -451,12 +451,12 @@ class repository_sword_upload extends repository {
         $content->id = 's_content';
         $content->options = array(
             (object)array(
-                'value' => 'url',
-                'label' => get_string('url', 'repository_sword_upload')
+                'value' => 'file',
+                'label' => get_string('upload-file', 'repository_sword_upload')
             ),
             (object)array(
-                'value' => 'file',
-                'label' => get_string('file', 'repository_sword_upload')
+                'value' => 'url',
+                'label' => get_string('upload-url', 'repository_sword_upload')
             )
         );
         $form[] = $content;
