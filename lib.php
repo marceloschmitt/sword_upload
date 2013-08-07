@@ -727,7 +727,8 @@ class repository_sword_upload extends repository {
 
         if (empty($saveas_filename)) {
             $filename = str_replace(' ', '', $_FILES['repo_upload_file']['name']);
-	    $filename = strstr(utf8_decode($filename), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+	    $filename = strtr($filename, 'ÁÀÂÄÃÅÇÉÈÊËÍÏÎÌÑÓÒÔÖÕÚÙÛÜÝ', 'AAAAAACEEEEEIIIINOOOOOUUUUY');
+$filenam = strtr($filename, 'áàâäãåçéèêëíìîïñóòôöõúùûüýÿ', 'aaaaaaceeeeiiiinooooouuuuyy');
         } else {
             $parts =explode(".", $_FILES['repo_upload_file']['name']);
             $extension = end($parts);
