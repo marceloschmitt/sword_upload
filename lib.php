@@ -793,7 +793,7 @@ class repository_sword_upload extends repository {
             $SESSION->etapa = 'finish';
 
             return array(
-                'url' => $testdr->sac_links[0],
+                'url' => $testdr->sac_links[0),
             );
 
         } else {
