@@ -83,6 +83,7 @@ class repository_sword_upload extends repository {
             $username->id   = 's_username';
             $username->name = 's_username';
             $username->label = get_string('username', 'repository_sword_upload');
+		$username->size = 16;
             $form[] = $username;
 
             $password = new stdClass();
@@ -169,15 +170,7 @@ class repository_sword_upload extends repository {
                 unset($SESSION->entry);
                 unset($this->serviceDocument);
                 return false;
-            }
-
-            //unset($SESSION->username);
-            //unset($SESSION->password);
-            //unset($SESSION->collections);
-            //unset($SESSION->etapa);
-            //unset($SESSION->entry);
-            //unset($this->serviceDocument);
-           
+            }           
 
 
         }
@@ -190,7 +183,6 @@ class repository_sword_upload extends repository {
         unset($SESSION->password);
         unset($SESSION->collections);
         unset($SESSION->etapa);
-        //echo ' entrou no logout | (valor do $SESSION->etapa:'.$SESSION->etapa;
         unset($SESSION->entry);
         unset($this->serviceDocument);
         $this->print_login(false);
@@ -210,8 +202,6 @@ class repository_sword_upload extends repository {
         $ret = array();
         $ret['nosearch'] = true;
         $ret['norefresh'] = true;
-        //$ret['nologin'] = false;
-        //$ret['logouttext'] = 'Logout';
         $ret['login_btn_label'] = get_string('next', 'repository_sword_upload');
 
 
@@ -236,6 +226,7 @@ class repository_sword_upload extends repository {
                 $list = array();
                 $list[] = $this->deposit_process();
                 $ret['list'] = $list;
+		$this->get_link("http://poa.ifrs.edu.br");
                 return $ret;
                 break;
 
@@ -716,6 +707,8 @@ class repository_sword_upload extends repository {
         return $thumbnail;
     }
 
+
+/*************** Funcao chamada ao clicar no botão de upload ************/
     public function upload($saveas_filename, $maxbytes) {
         global $SESSION, $CFG;
 
