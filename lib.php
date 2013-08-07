@@ -378,7 +378,7 @@ class repository_sword_upload extends repository {
         $subject->id = 's_subject';
         $subject->name = 's_subject';
         $subject->label = get_string('subject', 'repository_sword_upload');
-       // $form[] = $subject;
+        $form[] = $subject;
 
         $language = new stdClass();
         $language->type = 'select';
@@ -451,12 +451,12 @@ class repository_sword_upload extends repository {
         $content->id = 's_content';
         $content->options = array(
             (object)array(
-                'value' => 'file',
-                'label' => get_string('upload-file', 'repository_sword_upload')
+                'value' => 'upload-file',
+                'label' => get_string('file', 'repository_sword_upload')
             ),
-            (object)array(
-                'value' => 'url',
-                'label' => get_string('upload-url', 'repository_sword_upload')
+(object)array(
+                'value' => 'upload-url',
+                'label' => get_string('url', 'repository_sword_upload')
             )
         );
         $form[] = $content;
@@ -517,14 +517,14 @@ class repository_sword_upload extends repository {
         $abstract = trim(optional_param('s_abstract','',PARAM_RAW));
         $description = trim(optional_param('s_description','',PARAM_RAW));
         $type = trim(optional_param('s_type','',PARAM_RAW));
-       // $subject = trim(optional_param('s_subject','',PARAM_RAW));
+        $subject = trim(optional_param('s_subject','',PARAM_RAW));
         $language = trim(optional_param('s_language','',PARAM_RAW));
         $collection = trim(optional_param('s_collection','',PARAM_RAW));
         $content = trim(optional_param('s_content','',PARAM_RAW));
 
-        if (!empty($title) AND !empty($abstract) AND !empty($collection) AND !empty($content) AND !empty($language) AND !empty($type)) {
+        if (!empty($title) AND !empty($abstract) AND !empty($collection) AND !empty($content) AND !empty($language) AND !empty($type) AND !empty($subject)) {
             $types = explode(';',$type);
-           // $subjects = explode(';',$subject);
+            $subjects = explode(';',$subject);
 
             $SESSION->entry = array(
                 'title' => $title,
@@ -532,7 +532,7 @@ class repository_sword_upload extends repository {
                 'description' => $description,
                 'type' => $types,
                 'language' => $language,
-                //'subject' => $subjects,
+                'subject' => $subjects,
                 'collection' => $collection,
                 'content' => $content
             );
@@ -596,6 +596,10 @@ class repository_sword_upload extends repository {
 
         foreach ($SESSION->entry['type'] as $type) {
             $swordPackager->addTypes($type);
+        }
+		
+		foreach ($SESSION->entry['subject'] as $subject) {
+            $swordPackager->addSubject($type);
         }
 
         $swordPackager->addIdentifier($SESSION->entry['url']);
@@ -758,6 +762,10 @@ class repository_sword_upload extends repository {
 
         foreach ($SESSION->entry['type'] as $type) {
             $swordPackager->addTypes($type);
+        }
+		
+		foreach ($SESSION->entry['subject'] as $subject) {
+            $swordPackager->addSubject($type);
         }
 
         $swordPackager->addFile($filename,$mime_type);
