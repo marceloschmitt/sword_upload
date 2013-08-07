@@ -553,7 +553,7 @@ class repository_sword_upload extends repository {
 
         global $SESSION;
 
-        $url = urlencode(trim(optional_param('s_url','',PARAM_RAW)));
+        $url = trim(optional_param('s_url','',PARAM_RAW));
         $license = trim(optional_param('s_license','',PARAM_RAW));
         $author = trim(optional_param('s_author','',PARAM_RAW));
 
@@ -726,12 +726,12 @@ class repository_sword_upload extends repository {
         $author = trim(optional_param('author','',PARAM_RAW));
 
         if (empty($saveas_filename)) {
-            $filename = $_FILES['repo_upload_file']['name'];
+            $filename = str_replace(' ', '', $_FILES['repo_upload_file']['name']);
         } else {
             $parts =explode(".", $_FILES['repo_upload_file']['name']);
             $extension = end($parts);
             $extension = strtolower($extension);
-            $filename = $saveas_filename.'.'.$extension;
+            $filename = str_replace(' ', '', $saveas_filename.'.'.$extension);
         }
 
         move_uploaded_file($_FILES['repo_upload_file']['tmp_name'],$CFG->dirroot . '/repository/sword_upload/temp/files/'.$filename);
@@ -792,7 +792,7 @@ class repository_sword_upload extends repository {
             $SESSION->etapa = 'finish';
 
             return array(
-                'url' => urlencode($testdr->sac_links[0]),
+                'url' => $testdr->sac_links[0],
             );
 
         } else {
