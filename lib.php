@@ -728,13 +728,17 @@ class repository_sword_upload extends repository {
         if (empty($saveas_filename)) {
             $filename = $_FILES['repo_upload_file']['name'];
 	    $filename = str_replace(' ','',$filename);
-	    $filename = strtr($filename, 'ÁÀÂÄÃÅÇÉÈÊËÍÏÎÌÑÓÒÔÖÕÚÙÛÜÝ', 'AAAAAACEEEEEIIIINOOOOOUUUUY');
-	    $filename = strtr($filename, 'áàâäãåçéèêëíìîïñóòôöõúùûüýÿ', 'aaaaaaceeeeiiiinooooouuuuyy');
+	    $filename = strtr($filename, 'ÁÀÂÄÃÅÇÉÈÊËÍÏÎÌÑÓÒÔÖÕÚÙÛÜÝ', '');
+	    $filename = strtr($filename, 'áàâäãåçéèêëíìîïñóòôöõúùûüýÿ', '');
         } else {
             $parts =explode(".", $_FILES['repo_upload_file']['name']);
             $extension = end($parts);
             $extension = strtolower($extension);
             $filename = $saveas_filename.'.'.$extension;
+	    $filename = str_replace(' ','',$filename);
+	    $filename = strtr($filename, 'ÁÀÂÄÃÅÇÉÈÊËÍÏÎÌÑÓÒÔÖÕÚÙÛÜÝ', '');
+	    $filename = strtr($filename, 'áàâäãåçéèêëíìîïñóòôöõúùûüýÿ', '');
+
         }
 
         move_uploaded_file($_FILES['repo_upload_file']['tmp_name'],$CFG->dirroot . '/repository/sword_upload/temp/files/'.$filename);
