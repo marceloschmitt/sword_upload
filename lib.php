@@ -236,6 +236,7 @@ class repository_sword_upload extends repository {
                 $list = array();
                 $list[] = $this->deposit_process();
                 $ret['list'] = $list;
+		$this->get_link("http://poa.ifrs.edu.br");
                 return $ret;
                 break;
 
