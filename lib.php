@@ -553,7 +553,7 @@ class repository_sword_upload extends repository {
 
         global $SESSION;
 
-        $url = urlencode(trim(optional_param('s_url','',PARAM_RAW)));
+        $url = trim(optional_param('s_url','',PARAM_RAW));
         $license = trim(optional_param('s_license','',PARAM_RAW));
         $author = trim(optional_param('s_author','',PARAM_RAW));
 
@@ -792,7 +792,7 @@ class repository_sword_upload extends repository {
             $SESSION->etapa = 'finish';
 
             return array(
-                'url' => urlencode($testdr->sac_links[0]),
+                'url' => str_replace(' ','%20',($testdr->sac_links[0])),
             );
 
         } else {
