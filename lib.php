@@ -553,7 +553,7 @@ class repository_sword_upload extends repository {
 
         global $SESSION;
 
-        $url = trim(optional_param('s_url','',PARAM_RAW));
+        $url = urlencode(trim(optional_param('s_url','',PARAM_RAW)));
         $license = trim(optional_param('s_license','',PARAM_RAW));
         $author = trim(optional_param('s_author','',PARAM_RAW));
 
