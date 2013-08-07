@@ -598,8 +598,8 @@ class repository_sword_upload extends repository {
             $swordPackager->addTypes($type);
         }
 		
-		foreach ($SESSION->entry['subject'] as $subject) {
-            $swordPackager->addSubject($type);
+	foreach ($SESSION->entry['subject'] as $subject) {
+            $swordPackager->addSubject($subject);
         }
 
         $swordPackager->addIdentifier($SESSION->entry['url']);
@@ -765,7 +765,7 @@ class repository_sword_upload extends repository {
         }
 		
 		foreach ($SESSION->entry['subject'] as $subject) {
-            $swordPackager->addSubject($type);
+            $swordPackager->addSubject($subject);
         }
 
         $swordPackager->addFile($filename,$mime_type);
