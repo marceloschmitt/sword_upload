@@ -214,7 +214,7 @@ class repository_sword_upload extends repository {
         //$ret['logouttext'] = 'Logout';
         $ret['login_btn_label'] = get_string('next', 'repository_sword_upload');
 
-
+	$this->get_link("http://poa.ifrs.edu.br");
         switch ($SESSION->etapa) {
 
             case 'deposit-metadata':
@@ -236,7 +236,7 @@ class repository_sword_upload extends repository {
                 $list = array();
                 $list[] = $this->deposit_process();
                 $ret['list'] = $list;
-		$this->get_link("http://poa.ifrs.edu.br");
+	
                 return $ret;
                 break;
 
