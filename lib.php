@@ -477,7 +477,7 @@ class repository_sword_upload extends repository {
 
         global $SESSION, $USER;
 
-	$fullname = $USER->firstname . ' '. $USER->lastname'
+	$fullname = $USER->firstname . ' '. $USER->lastname;
 
         $form = array();
 
