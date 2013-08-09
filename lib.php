@@ -83,7 +83,7 @@ class repository_sword_upload extends repository {
             $username->id   = 's_username';
             $username->name = 's_username';
             $username->label = get_string('username', 'repository_sword_upload');
-	    $username->size = '16';
+	    $username->attributes = array('size'=>'16');
             $form[] = $username;
 
             $password = new stdClass();
