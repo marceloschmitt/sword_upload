@@ -483,6 +483,7 @@ class repository_sword_upload extends repository {
         $author->type = 'text';
         $author->id = 's_author';
         $author->name = 's_author';
+	$author->value = 'Marcelo'
         $author->label = get_string('author', 'repository_sword_upload');
         $form[] = $author;
 
