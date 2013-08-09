@@ -82,7 +82,8 @@ class repository_sword_upload extends repository {
             $username->type = 'text';
             $username->id   = 's_username';
             $username->name = 's_username';
-            $username->label = get_string('click-to-link', 'repository_sword_upload');
+            $username->label = get_string('username', 'repository_sword_upload');
+	    $username->attributes = array('size'=>'16');
             $form[] = $username;
 
             $password = new stdClass();
@@ -262,14 +263,14 @@ class repository_sword_upload extends repository {
         $form[] = $title;
 
         $abstract = new stdClass();
-        $abstract->type = 'text';
+        $abstract->type = 'textiarea';
         $abstract->id = 's_abstract';
         $abstract->name = 's_abstract';
         $abstract->label = get_string('abstract', 'repository_sword_upload');
         $form[] = $abstract;
 
         $description = new stdClass();
-        $description->type = 'text';
+        $description->type = 'textarea';
         $description->id = 's_description';
         $description->name = 's_description';
         $description->label = get_string('description', 'repository_sword_upload');
