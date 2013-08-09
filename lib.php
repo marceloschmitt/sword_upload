@@ -76,7 +76,7 @@ class repository_sword_upload extends repository {
         $ret = array();
         $form = array();
 
-        if (isset($SESSION->etapa) OR !$nao_login) {
+      //  if (isset($SESSION->etapa) OR !$nao_login) {
 
             $username = new stdClass();
             $username->type = 'text';
@@ -101,7 +101,7 @@ class repository_sword_upload extends repository {
             //$action->label = '<span style="position: relative !important; width: 160%">Instruções de uso do sistema asdasd asd asd sad as das das dasdasdsa dasdasdasdas</span>';
             $ret['login_btn_label'] = get_string('send', 'repository_sword_upload');
 
-        }
+ /*       }
         else {
             $SESSION->etapa = 'instructions';
             //echo get_string('instructions', 'repository_sword_upload'); exit;
@@ -115,7 +115,7 @@ class repository_sword_upload extends repository {
             //print_r(licences_select_moodle()); exit;
             $form[] = $instructions;
             $ret['login_btn_label'] = get_string('next', 'repository_sword_upload');
-        }
+        } */
 
         $ret['login'] = $form;
         return $ret;
