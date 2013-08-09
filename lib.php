@@ -631,7 +631,7 @@ class repository_sword_upload extends repository {
             $SESSION->etapa = 'finish';
 
             return array(
-                'title' => $SESSION->entry['title'].' Clique aqui para ligar ao Moodle.'. ,
+                'title' => $SESSION->entry['title'].' Clique aqui para ligar ao Moodle.' ,
                 'url' => $SESSION->entry['url'],
                 'source' => $SESSION->entry['url'],
 		'size' => 'url',
