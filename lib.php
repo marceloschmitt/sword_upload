@@ -631,11 +631,11 @@ class repository_sword_upload extends repository {
             $SESSION->etapa = 'finish';
 
             return array(
-                'title' => $SESSION->entry['title'].' Clique aqui para ligar ao Moodle.' ,
+                'title' => $SESSION->entry['title'].' - ' . get_string('click-to-link','repository_sword_upload'),
                 'url' => $SESSION->entry['url'],
                 'source' => $SESSION->entry['url'],
-		'size' => 'url',
-		'thumbnail' => $this->get_thumbnail($SESSION->entry['url']),
+		'size' => 0,
+		'thumbnail' => $OUTPUT->pix_url('f/html-32')->out(false);
             );
 
         } else {

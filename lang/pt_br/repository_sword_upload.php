@@ -75,4 +75,7 @@ $string['license-cc-sa'] = 'Creative Commons - ShareAlike';
 
 $string['upload_error'] = 'Ocorreu um erro inesperado, tente mais tarde.';
 
+$string['click-to-link'] = 'Click para relacionar no Moodle';
+
+
 
