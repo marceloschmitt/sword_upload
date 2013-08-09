@@ -263,15 +263,14 @@ class repository_sword_upload extends repository {
         $form[] = $title;
 
         $abstract = new stdClass();
-        $abstract->type = 'textarea';
+        $abstract->type = 'text';
         $abstract->id = 's_abstract';
         $abstract->name = 's_abstract';
         $abstract->label = get_string('abstract', 'repository_sword_upload');
         $form[] = $abstract;
 
-	$form->addElement('text', 'email', get_string('email'), 'maxlength="100" size="25" ');
         $description = new stdClass();
-        $description->type = 'textarea';
+        $description->type = 'text';
         $description->id = 's_description';
         $description->name = 's_description';
         $description->label = get_string('description', 'repository_sword_upload');
