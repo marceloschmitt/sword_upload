@@ -635,7 +635,7 @@ class repository_sword_upload extends repository {
                 'url' => $SESSION->entry['url'],
                 'source' => $SESSION->entry['url'],
 		'size' => 0,
-		'thumbnail' => $OUTPUT->pix_url('f/html-32')->out(false);
+		'thumbnail' => $OUTPUT->pix_url('f/html-32')->out(false)
             );
 
         } else {
