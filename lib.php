@@ -595,7 +595,9 @@ class repository_sword_upload extends repository {
         }
 
 
+	$autores = '';
         foreach ($SESSION->entry['author'] as $author) {
+            $authores = $autores . $author . ';';
             $swordPackager->addCreator($author);
         }
 
@@ -635,8 +637,8 @@ class repository_sword_upload extends repository {
                 'url' => $SESSION->entry['url'],
                 'source' => $SESSION->entry['url'],
 		'size' => 0,
-		'author' => 'Marcelo',
-		'license'=> 'creative',
+		'author' => $autores,
+		'license'=> $SESSION->entry['license-name'],
 		'thumbnail' => $OUTPUT->pix_url('f/html-32')->out(false)
             );
 
