@@ -47,6 +47,8 @@ $string['username'] = 'Usuário';
 $string['password'] = 'Senha';
 $string['send'] = 'Enviar';
 
+$string['click-to-link'] = 'Clique para relacionar no Moodle';
+
 //Deposit
 $string['title'] = 'Título';
 $string['abstract'] = 'Resumo';
@@ -75,7 +77,7 @@ $string['license-cc-sa'] = 'Creative Commons - ShareAlike';
 
 $string['upload-error'] = 'Ocorreu um erro inesperado, tente mais tarde.';
 
-$string['click-to-link'] = 'Clique para relacionar no Moodle';
+
 
 
 
