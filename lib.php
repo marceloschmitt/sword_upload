@@ -274,6 +274,7 @@ class repository_sword_upload extends repository {
         $description->id = 's_description';
         $description->name = 's_description';
         $description->label = get_string('description', 'repository_sword_upload');
+	$description->rows = 20;
         $form[] = $description;
 
         $type = new stdClass();
