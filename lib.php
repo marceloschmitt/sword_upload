@@ -83,6 +83,7 @@ class repository_sword_upload extends repository {
             $username->id   = 's_username';
             $username->name = 's_username';
             $username->label = get_string('username', 'repository_sword_upload');
+	    $username->size = 16;
             $form[] = $username;
 
             $password = new stdClass();
@@ -822,7 +823,7 @@ class repository_sword_upload extends repository {
      * @return bool
      */
     public static function instance_config_form($mform) {
-        $mform->addElement('text', 'sword_url', get_string('sword_url', 'repository_sword_upload'), array('size' => '40'));
+        $mform->addElement('text', 'sword_url', get_string('sword_url', 'repository_sword_upload'));
         $mform->addElement('static', 'sword_url_intro', '', get_string('swordurltext', 'repository_sword_upload'));
         $mform->addRule('sword_url', get_string('required'), 'required', null, 'client');
         return true;
