@@ -83,7 +83,7 @@ class repository_sword_upload extends repository {
             $username->id   = 's_username';
             $username->name = 's_username';
             $username->label = get_string('username', 'repository_sword_upload');
-	    $username->size = 16;
+	    $username->size = '16';
             $form[] = $username;
 
             $password = new stdClass();
@@ -99,7 +99,7 @@ class repository_sword_upload extends repository {
             $action->name = 's_action';
             $action->value= 'login';
             $form[] = $action;
-            //$action->label = '<span style="position: relative !important; width: 160%">Instruções de uso do sistema asdasd asd asd sad as das das dasdasdsa dasdasdasdas</span>';
+
             $ret['login_btn_label'] = get_string('send', 'repository_sword_upload');
 
  /*       }
