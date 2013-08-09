@@ -633,7 +633,7 @@ class repository_sword_upload extends repository {
             $SESSION->etapa = 'finish';
 
             return array(
-                'title' => $SESSION->entry['title'].' - ' . get_string(':-link','repository_sword_upload'),
+                'title' => $SESSION->entry['title'].' - ' . get_string('click-to-link','repository_sword_upload'),
                 'url' => $SESSION->entry['url'],
                 'source' => $SESSION->entry['url'],
 		'size' => 0,
