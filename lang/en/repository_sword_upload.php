@@ -47,6 +47,8 @@ $string['username'] = 'Usuário';
 $string['password'] = 'Senha';
 $string['send'] = 'Enviar';
 
+$string['click-to-link'] = 'Click to link in Moodle';
+
 //Deposit
 $string['title'] = 'Título';
 $string['abstract'] = 'Resumo';
