@@ -12,7 +12,6 @@
         }
 
     function get_mimetype($extension) {
-	$extension = strtolower($extension);
         $extensions = array(
             '.x3d' => 'application/vnd.hzn-3d-crossword',
             '.3gp' => 'video/3gpp',
@@ -701,8 +700,8 @@
             '.zaz' => 'application/vnd.zzazz.deck+xml',
 
         );
-        if (isset($extension[$extension])) {
-            return $extensions[$extension];
+        if (isset($extension[strtolower($extension)])) {
+            return $extensions[strtower($extension)];
         } else {
             return false;
         }
