@@ -700,8 +700,8 @@
             '.zaz' => 'application/vnd.zzazz.deck+xml',
 
         );
-        if (isset($extension[strtolower($extension)])) {
-            return $extensions[strtower($extension)];
+        if (isset($extension[$extension])) {
+            return $extensions[$extension];
         } else {
             return false;
         }
