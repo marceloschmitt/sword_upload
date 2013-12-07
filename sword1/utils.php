@@ -12,7 +12,6 @@
         }
 
     function get_mimetype($extension) {
-	$extension = strtolower($extension);
         $extensions = array(
             '.x3d' => 'application/vnd.hzn-3d-crossword',
             '.3gp' => 'video/3gpp',
