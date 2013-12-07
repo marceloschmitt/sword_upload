@@ -752,7 +752,7 @@ class repository_sword_upload extends repository {
 
         move_uploaded_file($_FILES['repo_upload_file']['tmp_name'],$CFG->dirroot . '/repository/sword_upload/temp/files/'.$filename);
         $pathinfo = pathinfo($CFG->dirroot . '/repository/sword_upload/temp/files/'.$filename);
-        $extensao = ‘.’.strtolower($pathinfo['extension’]);
+        $extensao = ‘.’.strtolower($pathinfo['extension']);
         $mime_type = get_mimetype($extensao);
 
         $authors = explode(';',$author);
