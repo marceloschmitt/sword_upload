@@ -701,7 +701,7 @@
 
         );
         if (isset($extension[strtolower($extension)])) {
-            return $extensions[strtower($extension)];
+            return $extensions[strtolower($extension)];
         } else {
             return false;
         }
