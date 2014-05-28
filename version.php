@@ -15,4 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-$plugin->version = 2013120705;
+$plugin->requires  = 2013050100;        // Requires this Moodle version
+$plugin->component = 'repository_sword_upload’;
+$plugin->release = "0.9";
+$plugin->maturity = MATURITY_BETA;
+$plugin->version = 2014052801;
