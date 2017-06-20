@@ -1,5 +1,4 @@
 <?php  
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -23,13 +22,13 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-//$string['configplugin'] = 'SWORD upload configuration';
-//$string['licensekey'] = 'License Key';
-//$string['pluginname'] = 'SWORD Upload';
-//$string['pluginname_help'] = 'SWORD Upload';
-//$string['cesta:view'] = 'View SWORD Upload';
+// $string['configplugin'] = 'SWORD upload configuration';
+// $string['licensekey'] = 'License Key';
+// $string['pluginname'] = 'SWORD Upload';
+// $string['pluginname_help'] = 'SWORD Upload';
+// $string['cesta:view'] = 'View SWORD Upload';
 
-//$string['keyword'] = 'Keyword';
+// $string['keyword'] = 'Keyword';
 
 $string['sword_url'] = 'URL SWORD';
 $string['swordurltext'] = 'A URL SWORD deve ser no formato: http://seusite.com/swordv2/servicedocument';
@@ -39,17 +38,17 @@ $string['notitle'] = 'Sem título';
 
 $string['pluginname_help'] = 'Um plug-in para repositórios com  SWORD';
 $string['pluginname'] = 'Repositório SWORD Upload';
-//$string['soapmustbeenabled'] = 'SOAP extension must be enabled for sword upload plugin';
-//$string['space'] = 'Space';
+// $string['soapmustbeenabled'] = 'SOAP extension must be enabled for sword upload plugin';
+// $string['space'] = 'Space';
 
-//Login
+// Login
 $string['username'] = 'Usuário';
 $string['password'] = 'Senha';
 $string['send'] = 'Enviar';
 
 $string['click-to-link'] = 'Click to link in Moodle';
 
-//Deposit
+// Deposit
 $string['title'] = 'Título';
 $string['abstract'] = 'Resumo';
 $string['description'] = 'Descrição';
@@ -76,5 +75,3 @@ $string['license-cc-nc-sa'] = 'Creative Commons - No Commercial ShareAlike';
 $string['license-cc-sa'] = 'Creative Commons - ShareAlike';
 
 $string['upload_error'] = 'Ocorreu um erro inesperado, tente mais tarde.';
-
-
