@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,8 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+defined('MOODLE_INTERNAL') || die();
 $plugin->requires  = 2013050100;        // Requires this Moodle version
 $plugin->component = "repository_sword_upload";
-$plugin->release = "0.9";
-$plugin->maturity = MATURITY_BETA;
-$plugin->version = 2014052802;
+$plugin->release = "1.0";
+$plugin->maturity = STABLE;
+$plugin->version = 2015062201;

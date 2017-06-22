@@ -1,4 +1,20 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+defined('MOODLE_INTERNAL') || die();
 
 function getInstructions() {
     $INSTRUCTIONS_TEXT = <<<TEXT
@@ -14,12 +30,12 @@ TEXT;
     return $INSTRUCTIONS_TEXT;
 }
 
-function getLicenseTerm($license, $term) {
-    $licenses = getAllLicenses();
+function get_license_term($license, $term) {
+    $licenses = get_all_licenses();
     return $licenses[$license][$term];
 }
 
-function getAllLicenses() {
+function get_all_licenses() {
     return array(
         'unknown' => array(
             'name-moodle' => 'Other',
@@ -70,15 +86,15 @@ function getAllLicenses() {
 }
 
 function licences_select_moodle() {
-    $licenses = getAllLicenses();
-    $select_licenses = array();
+    $licenses = get_all_licenses();
+    $selectlicenses = array();
     foreach ($licenses as $key => $value) {
-        $select_licenses[] = (object) array(
+        $selectlicenses[] = (object) array(
             'label' => $value['name-moodle'],
             'value' => $key,
         );
     }
-    return $select_licenses;
+    return $selectlicenses;
 }
 
 function RetirarAcentos($frase) {
