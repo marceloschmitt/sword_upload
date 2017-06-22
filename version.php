@@ -18,5 +18,5 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->requires  = 2013050100;        // Requires this Moodle version
 $plugin->component = "repository_sword_upload";
 $plugin->release = "1.0";
-$plugin->maturity = STABLE;
+$plugin->maturity = MATURITY_RC;
 $plugin->version = 2015062201;
