@@ -1,16 +1,25 @@
 <?php
-/**
- * This plugin is used to deposit learning objects in repositories
- *
- * @since       2.0
- * @package     repository_sword_upload
- * @copyright   2013 Jonathan Alba Videira e Marcelo Augusto Rauh Schmitt
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+defined('MOODLE_INTERNAL') || die();
+
 require_once($CFG->dirroot . '/repository/lib.php');
 require_once($CFG->dirroot . '/repository/sword_upload/utils.php');
 
-/**
+/*
  * repository_sword_upload class
  * This is a class used send files to repositories
  *
@@ -21,8 +30,9 @@ require_once($CFG->dirroot . '/repository/sword_upload/utils.php');
  *
  * @property SWORDAPPClient $swordAppClient
  */
-ini_set('display_errors',1);
-ini_set('display_startup_erros',1);
+ 
+ini_set('display_errors', 1);
+ini_set('display_startup_erros', 1);
 error_reporting(E_ALL);
 
 class repository_sword_upload extends repository {
@@ -40,9 +50,9 @@ class repository_sword_upload extends repository {
         require_once($CFG->dirroot . '/repository/sword_upload/sword1/swordappclient.php');
         $this->swordAppClient =new SWORDAPPClient();
 
-        $action = optional_param('s_action','',PARAM_RAW);
+        $action = optional_param('s_action', '', PARAM_RAW);
 
-        if (optional_param('action','',PARAM_RAW) == 'upload') {
+        if (optional_param('action','', PARAM_RAW) == 'upload') {
             $action = 'deposit-upload';
         }
        // echo $action.' | ';
@@ -102,7 +112,8 @@ class repository_sword_upload extends repository {
 
             $ret['login_btn_label'] = get_string('send', 'repository_sword_upload');
 
- /*       }
+/*       
+    }
         else {
             $SESSION->etapa = 'instructions';
             //echo get_string('instructions', 'repository_sword_upload'); exit;
@@ -116,7 +127,8 @@ class repository_sword_upload extends repository {
             //print_r(licences_select_moodle()); exit;
             $form[] = $instructions;
             $ret['login_btn_label'] = get_string('next', 'repository_sword_upload');
-        } */
+        } 
+*/
 
         $ret['login'] = $form;
         return $ret;
@@ -197,7 +209,7 @@ class repository_sword_upload extends repository {
         $this->print_login(false);
     }
 
-    /**
+    /*
     * Get a file list from alfresco
     *
     * @param string $uuid a unique id of directory in alfresco
@@ -649,7 +661,7 @@ class repository_sword_upload extends repository {
 
     }
 
-    //Verifica a extensao do arquivo para definir o icone que deve aparecer
+    // Verifica a extensao do arquivo para definir o icone que deve aparecer
     private function get_thumbnail($element) {
         global $OUTPUT;
 
@@ -838,7 +850,7 @@ class repository_sword_upload extends repository {
         return true;
     }
 
-    /**
+    /*
      * Support external link only
      *
      * @return int
