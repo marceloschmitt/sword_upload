@@ -37,7 +37,7 @@ error_reporting(E_ALL);
 
 class repository_sword_upload extends repository {
 
-    private $swordappclient
+    private $swordappclient;
     private $servicedocument;
     private $collections;
     private $etapa;
