@@ -16,18 +16,25 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-function getInstructions() {
-    $INSTRUCTIONS_TEXT = <<<TEXT
+function get_instructions() {
+    $instructionstext = <<<TEXT
     <div style="position: relative !important; width: 100% !important; text-align: left !important;">
         <h3 style="text-align: center !important;">Módulo de integração Moodle - Repositórios</h3>
-        <p style="text-align: left !important; margin-left: 5px !important;">Esse módulo permite que você envie objetos de aprendizagem para o repositório</p>
-        <p style="text-align: left !important; margin-left: 5px !important;">Primeiramente você deve fornecer seu usuário e senha para se autenticar no repositório</p>
-        <p style="text-align: left !important; margin-left: 5px !important;">Após, forneça as informações iniciais do objeto de aprendizagem, como título, tipo de objeto, resumo, descrição e escolha entre enviar um link ou um arquivo</p>
-        <p style="text-align: left !important; margin-left: 5px !important;">na etapa seguinte, caso tenha escolhido "enviar um arquivo", selecione o arquivo em seu computador e informe a licença e os autores</p>
-        <p style="text-align: left !important; margin-left: 5px !important;">Caso tenha selecionado "link", informe o link, sslecione a licença e os autores</p>
+        <p style="text-align: left !important; margin-left: 5px !important;">
+        Esse módulo permite que você envie objetos de aprendizagem para o repositório</p>
+        <p style="text-align: left !important; margin-left: 5px !important;">
+        Primeiramente você deve fornecer seu usuário e senha para se autenticar no repositório</p>
+        <p style="text-align: left !important; margin-left: 5px !important;">
+        Após, forneça as informações iniciais do objeto de aprendizagem, como título, tipo de objeto, resumo, 
+        descrição e escolha entre enviar um link ou um arquivo</p>
+        <p style="text-align: left !important; margin-left: 5px !important;">
+        na etapa seguinte, caso tenha escolhido "enviar um arquivo", 
+        selecione o arquivo em seu computador e informe a licença e os autores</p>
+        <p style="text-align: left !important; margin-left: 5px !important;">
+        Caso tenha selecionado "link", informe o link, sslecione a licença e os autores</p>
     </div>
 TEXT;
-    return $INSTRUCTIONS_TEXT;
+    return $instructionstext;
 }
 
 function get_license_term($license, $term) {
@@ -97,9 +104,9 @@ function licences_select_moodle() {
     return $selectlicenses;
 }
 
-function RetirarAcentos($frase) {
-    $frase = str_replace(array("à","á","â","ã","ä","è","é","ê","ë","ì","í","î","ï","ò","ó","ô","õ","ö","ù","ú","û","ü","À","Á","Â","Ã","Ä","È","É","Ê","Ë","Ì","Í","Î","Ò","Ó","Ô","Õ","Ö","Ù","Ú","Û","Ü","ç","Ç","ñ","Ñ"),
-                         array("a","a","a","a","a","e","e","e","e","i","i","i","i","o","o","o","o","o","u","u","u","u","A","A","A","A","A","E","E","E","E","I","I","I","O","O","O","O","O","U","U","U","U","c","C","n","N"), $frase);
- 
-    return $frase;     
+function retirarar_acentos($frase) {
+    $frase = str_replace(array("à", "á", "â", "ã", "ä", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ò", "ó", "ô", "õ", "ö", "ù", "ú", "û", "ü", "À", "Á", "Â", "Ã", "Ä", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ò", "Ó", "Ô", "Õ", "Ö", "Ù", "Ú", "Û", "Ü", "ç", "Ç", "ñ", "Ñ"),
+                         array("a", "a", "a", "a", "a", "e", "e", "e", "e", "i", "i", "i", "i", "o", "o", "o", "o", "o", "u", "u", "u", "u", "A", "A", "A", "A", "A", "E", "E", "E", "E", "I", "I", "I", "O", "O", "O", "O", "O", "U", "U", "U", "U", "c", "C", "n", "N"), $frase);
+
+    return $frase;
 }
