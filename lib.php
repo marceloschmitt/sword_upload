@@ -28,17 +28,17 @@ require_once($CFG->dirroot . '/repository/sword_upload/utils.php');
  * @copyright   2013 Jonathan Alba Videira e Marcelo Augusto Rauh Schmitt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
- * @property SWORDAPPClient $swordAppClient
+ * @property swordappclient $swordappclient
  */
- 
+
 ini_set('display_errors', 1);
 ini_set('display_startup_erros', 1);
 error_reporting(E_ALL);
 
 class repository_sword_upload extends repository {
 
-    private $swordAppClient;
-    private $serviceDocument;
+    private $swordappclient
+    private $servicedocument;
     private $collections;
     private $etapa;
     private $item;
@@ -48,15 +48,14 @@ class repository_sword_upload extends repository {
         parent::__construct($repositoryid, $context, $options);
 
         require_once($CFG->dirroot . '/repository/sword_upload/sword1/swordappclient.php');
-        $this->swordAppClient =new SWORDAPPClient();
+        $this->swordappclient =new swordappclient();
 
         $action = optional_param('s_action', '', PARAM_RAW);
 
         if (optional_param('action','', PARAM_RAW) == 'upload') {
             $action = 'deposit-upload';
         }
-       // echo $action.' | ';
-       // echo optional_param('action','',PARAM_RAW); exit;
+
         if (isset($action) AND !empty($action)) {
             //echo 'entrou no if4'; exit;
             switch ($action) {
@@ -148,11 +147,11 @@ class repository_sword_upload extends repository {
             $SESSION->password   = optional_param('s_password', '', PARAM_RAW);
 
             if (!empty($SESSION->username) AND !empty($SESSION->password)) {
-                $this->serviceDocument = $this->swordAppClient->servicedocument($this->options['sword_url'], $SESSION->username, $SESSION->password, $SESSION->username);
-                if ($this->serviceDocument->sac_status == 200) {
+                $this->servicedocument; = $this->swordappclient->servicedocument;($this->options['sword_url'], $SESSION->username, $SESSION->password, $SESSION->username);
+                if ($this->servicedocument;->sac_status == 200) {
 
                     $SESSION->collections= array();
-                    foreach ($this->serviceDocument->sac_workspaces as $workspace){
+                    foreach ($this->servicedocument;->sac_workspaces as $workspace){
                         if (!empty($workspace->sac_collections)) {
                             foreach ($workspace->sac_collections as $collection) {
                                 $SESSION->collections[] = array(
@@ -180,7 +179,7 @@ class repository_sword_upload extends repository {
                 unset($SESSION->collections);
                 unset($SESSION->etapa);
                 unset($SESSION->entry);
-                unset($this->serviceDocument);
+                unset($this->servicedocument;);
                 return false;
             }
 
@@ -189,7 +188,7 @@ class repository_sword_upload extends repository {
             //unset($SESSION->collections);
             //unset($SESSION->etapa);
             //unset($SESSION->entry);
-            //unset($this->serviceDocument);
+            //unset($this->servicedocument;);
            
 
 
@@ -205,7 +204,7 @@ class repository_sword_upload extends repository {
         unset($SESSION->etapa);
         //echo ' entrou no logout | (valor do $SESSION->etapa:'.$SESSION->etapa;
         unset($SESSION->entry);
-        unset($this->serviceDocument);
+        unset($this->servicedocument;);
         $this->print_login(false);
     }
 
@@ -571,16 +570,16 @@ class repository_sword_upload extends repository {
 
         global $SESSION;
 
-        $url = trim(optional_param('s_url','',PARAM_RAW));
-        $license = trim(optional_param('s_license','',PARAM_RAW));
-        $author = trim(optional_param('s_author','',PARAM_RAW));
+        $url = trim(optional_param('s_url', '', PARAM_RAW));
+        $license = trim(optional_param('s_license', '', PARAM_RAW));
+        $author = trim(optional_param('s_author', '', PARAM_RAW));
 
         if (!empty($url) AND !empty($license) AND !empty($author)) {
             $authors = explode(';',$author);
 
             $SESSION->entry['url'] = $url;
-            $SESSION->entry['license-name'] = getLicenseTerm($license,'name-repositorio');
-            $SESSION->entry['license-uri'] = getLicenseTerm($license,'uri');
+            $SESSION->entry['license-name'] = getLicenseTerm($license, 'name-repositorio');
+            $SESSION->entry['license-uri'] = getLicenseTerm($license, 'uri');
             $SESSION->entry['author'] = $authors;
 
             $SESSION->etapa = 'deposit-process';
@@ -596,50 +595,45 @@ class repository_sword_upload extends repository {
         global $SESSION, $CFG, $OUTPUT;
         require_once($CFG->dirroot . '/repository/sword_upload/sword1/packager_mets_swap.php');
 
-        $swordPackager = new PackagerMetsSwap($CFG->dirroot . '/repository/sword_upload/temp','files',$CFG->dirroot . '/repository/sword_upload/temp','mets_swap_package.zip');
+        $swordpackager = new PackagerMetsSwap($CFG->dirroot . '/repository/sword_upload/temp','files',$CFG->dirroot . '/repository/sword_upload/temp','mets_swap_package.zip');
 
-        $swordPackager->setTitle($SESSION->entry['title']);
-        $swordPackager->setAbstract($SESSION->entry['abstract']);
-        $swordPackager->setDescription($SESSION->entry['description']);
-        $swordPackager->setLanguage($SESSION->entry['language']);
+        $swordpackager->setTitle($SESSION->entry['title']);
+        $swordpackager->setAbstract($SESSION->entry['abstract']);
+        $swordpackager->setDescription($SESSION->entry['description']);
+        $swordpackager->setLanguage($SESSION->entry['language']);
         if (!empty($SESSION->entry['license-uri'])) {
-            $swordPackager->addRights($SESSION->entry['license-name']);
-            //$swordPackager->setRightsUri($SESSION->entry['license-uri']);
+            $swordpackager->addRights($SESSION->entry['license-name']);
+            //$swordpackager->setRightsUri($SESSION->entry['license-uri']);
         }
 
 
 	$authors = '';
         foreach ($SESSION->entry['author'] as $author) {
             $authors = $authors . $author . ';';
-            $swordPackager->addCreator($author);
+            $swordpackager->addCreator($author);
         }
 
         foreach ($SESSION->entry['type'] as $type) {
-            $swordPackager->addTypes($type);
+            $swordpackager->addTypes($type);
         }
 		
 	foreach ($SESSION->entry['subject'] as $subject) {
-            $swordPackager->addSubject($subject);
+            $swordpackager->addSubject($subject);
         }
 
-        $swordPackager->addIdentifier($SESSION->entry['url']);
-        //$swordPackager->setIdentifierUri($SESSION->entry['url']);
+        $swordpackager->addIdentifier($SESSION->entry['url']);
+        //$swordpackager->setIdentifierUri($SESSION->entry['url']);
 
-        $swordPackager->create();
+        $swordpackager->create();
 
-        $testdr = $this->swordAppClient->deposit(
-            $SESSION->entry['collection'],
-            $SESSION->username,
-            $SESSION->password,
-            $SESSION->username,
+        $testdr = $this->swordappclient->deposit(
+            $SESSION->entry['collection'], $SESSION->username, $SESSION->password, $SESSION->username,
             $CFG->dirroot . '/repository/sword_upload/temp/mets_swap_package.zip',
-            'http://purl.org/net/sword-types/METSDSpaceSIP',
-            'application/zip'
-            );
+            'http://purl.org/net/sword-types/METSDSpaceSIP', 'application/zip');
 
         if (($testdr->sac_status >= 200) || ($testdr->sac_status < 300)) {
 
-            copy($CFG->dirroot . '/repository/sword_upload/temp/files/mets.xml',$CFG->dirroot . '/repository/sword_upload/temp/files/mets-bak.xml');
+            copy($CFG->dirroot . '/repository/sword_upload/temp/files/mets.xml', $CFG->dirroot . '/repository/sword_upload/temp/files/mets-bak.xml');
             @unlink($CFG->dirroot . '/repository/sword_upload/temp/files/mets.xml');
             @unlink($CFG->dirroot . '/repository/sword_upload/temp/mets_swap_package.zip');
 
@@ -739,80 +733,76 @@ class repository_sword_upload extends repository {
         return $thumbnail;
     }
 
-    public function upload($saveas_filename, $maxbytes) {
+    public function upload($saveasfilename, $maxbytes) {
         global $SESSION, $CFG;
 
         require_once($CFG->dirroot . '/repository/sword_upload/sword1/packager_mets_swap.php');
         require_once($CFG->dirroot . '/repository/sword_upload/sword1/utils.php');
 
-        $license = trim(optional_param('license','',PARAM_RAW));
-        $author = trim(optional_param('author','',PARAM_RAW));
+        $license = trim(optional_param('license', '', PARAM_RAW));
+        $author = trim(optional_param('author', '', PARAM_RAW));
 
-        if (empty($saveas_filename)) {
+        if (empty($saveasfilename)) {
             $filename = $_FILES['repo_upload_file']['name'];
-	    $filename = str_replace(' ','',$filename);
+	    $filename = str_replace(' ', '', $filename);
 	    $filename = RetirarAcentos($filename);
         } else {
             $parts =explode(".", $_FILES['repo_upload_file']['name']);
             $extension = end($parts);
             $extension = strtolower($extension);
-            $filename = $saveas_filename.'.'.$extension;
-	    $filename = str_replace(' ','',$filename);
+            $filename = $saveasfilename.'.'.$extension;
+	    $filename = str_replace(' ', '', $filename);
 	    $filename = RetirarAcentos($filename);
 
         }
 
-        move_uploaded_file($_FILES['repo_upload_file']['tmp_name'],$CFG->dirroot . '/repository/sword_upload/temp/files/'.$filename);
+        move_uploaded_file($_FILES['repo_upload_file']['tmp_name'], $CFG->dirroot . '/repository/sword_upload/temp/files/'.$filename);
         $pathinfo = pathinfo($CFG->dirroot . '/repository/sword_upload/temp/files/'.$filename);
         $extensao = '.'.strtolower($pathinfo['extension']);
         $mime_type = get_mimetype($extensao);
 
         $authors = explode(';',$author);
 
-        $SESSION->entry['license-name'] = getLicenseTerm($license,'name-repositorio');
-        $SESSION->entry['license-uri'] = getLicenseTerm($license,'uri');
+        $SESSION->entry['license-name'] = getLicenseTerm($license, 'name-repositorio');
+        $SESSION->entry['license-uri'] = getLicenseTerm($license, 'uri');
         $SESSION->entry['author'] = $authors;
 
-        $swordPackager = new PackagerMetsSwap($CFG->dirroot . '/repository/sword_upload/temp','files',$CFG->dirroot . '/repository/sword_upload/temp','mets_swap_package.zip');
+        $swordpackager = new PackagerMetsSwap($CFG->dirroot . '/repository/sword_upload/temp','files',$CFG->dirroot . '/repository/sword_upload/temp', 'mets_swap_package.zip');
 
-        $swordPackager->setTitle($SESSION->entry['title']);
-        $swordPackager->setAbstract($SESSION->entry['abstract']);
-        $swordPackager->setDescription($SESSION->entry['description']);
-        $swordPackager->setLanguage($SESSION->entry['language']);
+        $swordpackager->setTitle($SESSION->entry['title']);
+        $swordpackager->setAbstract($SESSION->entry['abstract']);
+        $swordpackager->setDescription($SESSION->entry['description']);
+        $swordpackager->setLanguage($SESSION->entry['language']);
         if (!empty($SESSION->entry['license-uri'])) {
-            $swordPackager->addRights($SESSION->entry['license-name']);
-            //$swordPackager->setRightsUri($SESSION->entry['license-uri']);
+            $swordpackager->addRights($SESSION->entry['license-name']);
+            //$swordpackager->setRightsUri($SESSION->entry['license-uri']);
         }
 
         foreach ($SESSION->entry['author'] as $author) {
-            $swordPackager->addCreator($author);
+            $swordpackager->addCreator($author);
         }
 
         foreach ($SESSION->entry['type'] as $type) {
-            $swordPackager->addTypes($type);
+            $swordpackager->addTypes($type);
         }
 		
 		foreach ($SESSION->entry['subject'] as $subject) {
-            $swordPackager->addSubject($subject);
+            $swordpackager->addSubject($subject);
         }
 
-        $swordPackager->addFile($filename,$mime_type);
+        $swordpackager->addFile($filename, $mime_type);
 
-        $swordPackager->create();
+        $swordpackager->create();
 
-        $testdr = $this->swordAppClient->deposit(
-            $SESSION->entry['collection'],
-            $SESSION->username,
-            $SESSION->password,
-            $SESSION->username,
+        $testdr = $this->swordappclient->deposit(
+            $SESSION->entry['collection'], $SESSION->username, $SESSION->password, $SESSION->username,
             $CFG->dirroot . '/repository/sword_upload/temp/mets_swap_package.zip',
             'http://purl.org/net/sword-types/METSDSpaceSIP',
-            'application/zip'
-        );
+            'application/zip');
 
 
         if (($testdr->sac_status >= 200) || ($testdr->sac_status < 300)) {
-            copy($CFG->dirroot . '/repository/sword_upload/temp/files/mets.xml',$CFG->dirroot . '/repository/sword_upload/temp/files/mets-bak.xml');
+            copy($CFG->dirroot . '/repository/sword_upload/temp/files/mets.xml', $CFG->dirroot . '/repository/sword_upload/temp/files/mets-bak.xml');
             @unlink($CFG->dirroot . '/repository/sword_upload/temp/files/mets.xml');
             @unlink($CFG->dirroot . '/repository/sword_upload/temp/files/'.$filename);
             @unlink($CFG->dirroot . '/repository/sword_upload/temp/mets_swap_package.zip');
@@ -824,7 +814,7 @@ class repository_sword_upload extends repository {
             );
 
         } else {
-            throw new moodle_exception('upload_error','sword_upload_repositpry');
+            throw new moodle_exception('upload_error', 'sword_upload_repositpry');
         }
 
     }
