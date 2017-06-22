@@ -147,11 +147,11 @@ class repository_sword_upload extends repository {
             $SESSION->password   = optional_param('s_password', '', PARAM_RAW);
 
             if (!empty($SESSION->username) AND !empty($SESSION->password)) {
-                $this->servicedocument; = $this->swordappclient->servicedocument;($this->options['sword_url'], $SESSION->username, $SESSION->password, $SESSION->username);
-                if ($this->servicedocument;->sac_status == 200) {
+                $this->servicedocument = $this->swordappclient->servicedocument($this->options['sword_url'], $SESSION->username, $SESSION->password, $SESSION->username);
+                if ($this->servicedocument->sac_status == 200) {
 
                     $SESSION->collections= array();
-                    foreach ($this->servicedocument;->sac_workspaces as $workspace){
+                    foreach ($this->servicedocument->sac_workspaces as $workspace){
                         if (!empty($workspace->sac_collections)) {
                             foreach ($workspace->sac_collections as $collection) {
                                 $SESSION->collections[] = array(
@@ -179,7 +179,7 @@ class repository_sword_upload extends repository {
                 unset($SESSION->collections);
                 unset($SESSION->etapa);
                 unset($SESSION->entry);
-                unset($this->servicedocument;);
+                unset($this->servicedocument);
                 return false;
             }
 
@@ -188,7 +188,7 @@ class repository_sword_upload extends repository {
             //unset($SESSION->collections);
             //unset($SESSION->etapa);
             //unset($SESSION->entry);
-            //unset($this->servicedocument;);
+            //unset($this->servicedocument);
            
 
 
@@ -204,7 +204,7 @@ class repository_sword_upload extends repository {
         unset($SESSION->etapa);
         //echo ' entrou no logout | (valor do $SESSION->etapa:'.$SESSION->etapa;
         unset($SESSION->entry);
-        unset($this->servicedocument;);
+        unset($this->servicedocument);
         $this->print_login(false);
     }
 
