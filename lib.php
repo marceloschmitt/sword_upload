@@ -48,7 +48,7 @@ class repository_sword_upload extends repository {
         parent::__construct($repositoryid, $context, $options);
 
         require_once($CFG->dirroot . '/repository/sword_upload/sword1/swordappclient.php');
-        $this->swordappclient =new swordappclient();
+        $this->swordappclient = new swordappclient();
 
         $action = optional_param('s_action', '', PARAM_RAW);
 
@@ -57,7 +57,7 @@ class repository_sword_upload extends repository {
         }
 
         if (isset($action) AND !empty($action)) {
-            //echo 'entrou no if4'; exit;
+            // echo 'entrou no if4'; exit;
             switch ($action) {
 
                 case 'deposit-metadata':
@@ -70,49 +70,49 @@ class repository_sword_upload extends repository {
 
             }
 
-            //unset($SESSION->etapa);
+            // unset($SESSION->etapa);
 
         } else {
-            //echo 'entrou no if 3';exit;
+            // echo 'entrou no if 3';exit;
             $this->logout();
         }
 
     }
 
-    public function print_login($nao_login = true) {
+    public function print_login($naologin = true) {
 
         global $SESSION;
         $ret = array();
         $form = array();
 
-      //  if (isset($SESSION->etapa) OR !$nao_login) {
+        //  if (isset($SESSION->etapa) OR !$naologin) {
 
-            $username = new stdClass();
-            $username->type = 'text';
-            $username->id   = 's_username';
-            $username->name = 's_username';
-            $username->label = get_string('username', 'repository_sword_upload');
-        $username->attributes = array('size'=>'16');
-            $form[] = $username;
+        $username = new stdClass();
+        $username->type = 'text';
+        $username->id   = 's_username';
+        $username->name = 's_username';
+        $username->label = get_string('username', 'repository_sword_upload');
+        $username->attributes = array('size' => '16');
+        $form[] = $username;
 
-            $password = new stdClass();
-            $password->type = 'password';
-            $password->id   = 's_password';//campo id do input de busca do form
-            $password->name = 's_password'; //campo name do input de busca do form
-            $password->label = get_string('password', 'repository_sword_upload');
-            $form[] = $password;
+        $password = new stdClass();
+        $password->type = 'password';
+        $password->id   = 's_password'; // campo id do input de busca do form
+        $password->name = 's_password'; // campo name do input de busca do form
+        $password->label = get_string('password', 'repository_sword_upload');
+        $form[] = $password;
 
-            $action = new stdClass();
-            $action->type = 'hidden';
-            $action->id   = 's_action';
-            $action->name = 's_action';
-            $action->value= 'login';
-            $form[] = $action;
+        $action = new stdClass();
+        $action->type = 'hidden';
+        $action->id   = 's_action';
+        $action->name = 's_action';
+        $action->value= 'login';
+        $form[] = $action;
 
             $ret['login_btn_label'] = get_string('send', 'repository_sword_upload');
 
-/*       
-    }
+        /*       
+        }
         else {
             $SESSION->etapa = 'instructions';
             //echo get_string('instructions', 'repository_sword_upload'); exit;
@@ -126,8 +126,8 @@ class repository_sword_upload extends repository {
             //print_r(licences_select_moodle()); exit;
             $form[] = $instructions;
             $ret['login_btn_label'] = get_string('next', 'repository_sword_upload');
-        } 
-*/
+        }
+        */
 
         $ret['login'] = $form;
         return $ret;
@@ -150,13 +150,13 @@ class repository_sword_upload extends repository {
                 $this->servicedocument = $this->swordappclient->servicedocument($this->options['sword_url'], $SESSION->username, $SESSION->password, $SESSION->username);
                 if ($this->servicedocument->sac_status == 200) {
 
-                    $SESSION->collections= array();
-                    foreach ($this->servicedocument->sac_workspaces as $workspace){
+                    $SESSION->collections = array();
+                    foreach ($this->servicedocument->sac_workspaces as $workspace) {
                         if (!empty($workspace->sac_collections)) {
                             foreach ($workspace->sac_collections as $collection) {
                                 $SESSION->collections[] = array(
                                     'title' => $collection->sac_colltitle,
-                                    'url' => substr($collection->sac_href->asXML(),7,-1),
+                                    'url' => substr($collection->sac_href->asXML(), 7, -1),
                                 );
                             }
                         }
@@ -167,13 +167,13 @@ class repository_sword_upload extends repository {
 
                 }
             }
-            //echo ' entrou no login | ';
+            // echo ' entrou no login | ';
             // echo ''
             if (isset($SESSION->etapa) AND $SESSION->etapa == 'instructions') {
-              //  echo ' entrou no if | ';
+                //  echo ' entrou no if | ';
                 return false;
             } else {
-               // echo ' entrou no else | ';
+                // echo ' entrou no else | ';
                 unset($SESSION->username);
                 unset($SESSION->password);
                 unset($SESSION->collections);
@@ -183,13 +183,13 @@ class repository_sword_upload extends repository {
                 return false;
             }
 
-            //unset($SESSION->username);
-            //unset($SESSION->password);
-            //unset($SESSION->collections);
-            //unset($SESSION->etapa);
-            //unset($SESSION->entry);
-            //unset($this->servicedocument);
-           
+            // unset($SESSION->username);
+            // unset($SESSION->password);
+            // unset($SESSION->collections);
+            // unset($SESSION->etapa);
+            // unset($SESSION->entry);
+            // unset($this->servicedocument);
+
 
 
         }
@@ -202,7 +202,7 @@ class repository_sword_upload extends repository {
         unset($SESSION->password);
         unset($SESSION->collections);
         unset($SESSION->etapa);
-        //echo ' entrou no logout | (valor do $SESSION->etapa:'.$SESSION->etapa;
+        // echo ' entrou no logout | (valor do $SESSION->etapa:'.$SESSION->etapa;
         unset($SESSION->entry);
         unset($this->servicedocument);
         $this->print_login(false);
@@ -222,11 +222,11 @@ class repository_sword_upload extends repository {
         $ret = array();
         $ret['nosearch'] = true;
         $ret['norefresh'] = true;
-        //$ret['nologin'] = false;
-        //$ret['logouttext'] = 'Logout';
+        // $ret['nologin'] = false;
+        // $ret['logouttext'] = 'Logout';
         $ret['login_btn_label'] = get_string('next', 'repository_sword_upload');
 
-    $this->get_link("http://poa.ifrs.edu.br");
+        $this->get_link("http://poa.ifrs.edu.br");
         switch ($SESSION->etapa) {
 
             case 'deposit-metadata':
@@ -241,14 +241,14 @@ class repository_sword_upload extends repository {
                 break;
 
             case 'deposit-link':
-                $ret['login'] =  $this->print_deposit_link();
+                $ret['login'] = $this->print_deposit_link();
                 break;
 
             case 'deposit-process':
                 $list = array();
                 $list[] = $this->deposit_process();
                 $ret['list'] = $list;
-    
+
                 return $ret;
                 break;
 
@@ -285,7 +285,7 @@ class repository_sword_upload extends repository {
         $description->id = 's_description';
         $description->name = 's_description';
         $description->label = get_string('description', 'repository_sword_upload');
-    $description->rows = 20;
+        $description->rows = 20;
         $form[] = $description;
 
         $type = new stdClass();
@@ -385,8 +385,6 @@ class repository_sword_upload extends repository {
         );
         $form[] = $type;
 
-
-
         $subject = new stdClass();
         $subject->type = 'text';
         $subject->id = 's_subject';
@@ -449,7 +447,7 @@ class repository_sword_upload extends repository {
         $collection->name = 's_collection';
         $collection->id = 's_collection';
         $collections = array();
-        foreach($SESSION->collections as $c) {
+        foreach ($SESSION->collections as $c) {
             $collections[] = (object)array(
                 'value' => $c['url'],
                 'label' => $c['title']
@@ -468,7 +466,7 @@ class repository_sword_upload extends repository {
                 'value' => 'file',
                 'label' => get_string('upload-file', 'repository_sword_upload')
             ),
-(object)array(
+            (object)array(
                 'value' => 'url',
                 'label' => get_string('upload-url', 'repository_sword_upload')
             )
@@ -489,7 +487,7 @@ class repository_sword_upload extends repository {
 
         global $SESSION, $USER;
 
-    $fullname = $USER->firstname . ' '. $USER->lastname;
+        $fullname = $USER->firstname . ' '. $USER->lastname;
 
         $form = array();
 
@@ -497,7 +495,7 @@ class repository_sword_upload extends repository {
         $author->type = 'text';
         $author->id = 's_author';
         $author->name = 's_author';
-    $author->value = $fullname;
+        $author->value = $fullname;
         $author->label = get_string('author', 'repository_sword_upload');
         $form[] = $author;
 
@@ -530,14 +528,14 @@ class repository_sword_upload extends repository {
 
         global $SESSION;
 
-        $title = trim(optional_param('s_title', '',PARAM_RAW));
-        $abstract = trim(optional_param('s_abstract', '',PARAM_RAW));
-        $description = trim(optional_param('s_description', '',PARAM_RAW));
-        $type = trim(optional_param('s_type', '',PARAM_RAW));
-        $subject = trim(optional_param('s_subject', '',PARAM_RAW));
-        $language = trim(optional_param('s_language', '',PARAM_RAW));
-        $collection = trim(optional_param('s_collection', '',PARAM_RAW));
-        $content = trim(optional_param('s_content', '',PARAM_RAW));
+        $title = trim(optional_param('s_title', '', PARAM_RAW));
+        $abstract = trim(optional_param('s_abstract', '', PARAM_RAW));
+        $description = trim(optional_param('s_description', '',P ARAM_RAW));
+        $type = trim(optional_param('s_type', '', PARAM_RAW));
+        $subject = trim(optional_param('s_subject', '', PARAM_RAW));
+        $language = trim(optional_param('s_language', '', PARAM_RAW));
+        $collection = trim(optional_param('s_collection', '', PARAM_RAW));
+        $content = trim(optional_param('s_content', '', PARAM_RAW));
 
         if (!empty($title) AND !empty($abstract) AND !empty($collection) AND !empty($content) AND !empty($language) AND !empty($type) AND !empty($subject)) {
             $types = explode(';', $type);
@@ -603,11 +601,10 @@ class repository_sword_upload extends repository {
         $swordpackager->setLanguage($SESSION->entry['language']);
         if (!empty($SESSION->entry['license-uri'])) {
             $swordpackager->addRights($SESSION->entry['license-name']);
-            //$swordpackager->setRightsUri($SESSION->entry['license-uri']);
+            // $swordpackager->setRightsUri($SESSION->entry['license-uri']);
         }
 
-
-    $authors = '';
+        $authors = '';
         foreach ($SESSION->entry['author'] as $author) {
             $authors = $authors . $author . ';';
             $swordpackager->addCreator($author);
@@ -617,12 +614,12 @@ class repository_sword_upload extends repository {
             $swordpackager->addTypes($type);
         }
         
-    foreach ($SESSION->entry['subject'] as $subject) {
+        foreach ($SESSION->entry['subject'] as $subject) {
             $swordpackager->addSubject($subject);
         }
 
         $swordpackager->addIdentifier($SESSION->entry['url']);
-        //$swordpackager->setIdentifierUri($SESSION->entry['url']);
+        // $swordpackager->setIdentifierUri($SESSION->entry['url']);
 
         $swordpackager->create();
 
@@ -643,10 +640,10 @@ class repository_sword_upload extends repository {
                 'title' => $SESSION->entry['title'].' - ' . get_string('click-to-link', 'repository_sword_upload'),
                 'url' => $SESSION->entry['url'],
                 'source' => $SESSION->entry['url'],
-        'size' => 0,
-        'author' => $authors,
-        'license'=> $SESSION->entry['license-name'],
-        'thumbnail' => $OUTPUT->pix_url('f/html-32')->out(false)
+                'size' => 0,
+                'author' => $authors,
+                'license'=> $SESSION->entry['license-name'],
+                'thumbnail' => $OUTPUT->pix_url('f/html-32')->out(false)
             );
 
         } else {
@@ -659,7 +656,7 @@ class repository_sword_upload extends repository {
     private function get_thumbnail($element) {
         global $OUTPUT;
 
-        $parts =explode(".", $element);
+        $parts = explode(".", $element);
         $extension = end($parts);
         $extension = strtolower($extension);
 
@@ -744,16 +741,15 @@ class repository_sword_upload extends repository {
 
         if (empty($saveasfilename)) {
             $filename = $_FILES['repo_upload_file']['name'];
-        $filename = str_replace(' ', '', $filename);
-        $filename = RetirarAcentos($filename);
+            $filename = str_replace(' ', '', $filename);
+            $filename = retirar_acentos($filename);
         } else {
-            $parts =explode(".", $_FILES['repo_upload_file']['name']);
+            $parts = explode(".", $_FILES['repo_upload_file']['name']);
             $extension = end($parts);
             $extension = strtolower($extension);
             $filename = $saveasfilename.'.'.$extension;
-        $filename = str_replace(' ', '', $filename);
-        $filename = RetirarAcentos($filename);
-
+            $filename = str_replace(' ', '', $filename);
+            $filename = RetirarAcentos($filename);
         }
 
         move_uploaded_file($_FILES['repo_upload_file']['tmp_name'], $CFG->dirroot . '/repository/sword_upload/temp/files/'.$filename);
@@ -781,12 +777,10 @@ class repository_sword_upload extends repository {
         foreach ($SESSION->entry['author'] as $author) {
             $swordpackager->addCreator($author);
         }
-
         foreach ($SESSION->entry['type'] as $type) {
             $swordpackager->addTypes($type);
         }
-        
-        foreach ($SESSION->entry['subject'] as $subject) {
+                foreach ($SESSION->entry['subject'] as $subject) {
             $swordpackager->addSubject($subject);
         }
 
