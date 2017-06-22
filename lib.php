@@ -85,7 +85,7 @@ class repository_sword_upload extends repository {
         $ret = array();
         $form = array();
 
-        //  if (isset($SESSION->etapa) OR !$naologin) {
+        // if (isset($SESSION->etapa) OR !$naologin) {
 
         $username = new stdClass();
         $username->type = 'text';
@@ -104,14 +104,14 @@ class repository_sword_upload extends repository {
 
         $action = new stdClass();
         $action->type = 'hidden';
-        $action->id   = 's_action';
+        $action->id  = 's_action';
         $action->name = 's_action';
-        $action->value= 'login';
+        $action->value = 'login';
         $form[] = $action;
 
             $ret['login_btn_label'] = get_string('send', 'repository_sword_upload');
 
-        /*       
+        /*
         }
         else {
             $SESSION->etapa = 'instructions';
@@ -170,7 +170,7 @@ class repository_sword_upload extends repository {
             // echo ' entrou no login | ';
             // echo ''
             if (isset($SESSION->etapa) AND $SESSION->etapa == 'instructions') {
-                //  echo ' entrou no if | ';
+                // echo ' entrou no if | ';
                 return false;
             } else {
                 // echo ' entrou no else | ';
@@ -189,9 +189,6 @@ class repository_sword_upload extends repository {
             // unset($SESSION->etapa);
             // unset($SESSION->entry);
             // unset($this->servicedocument);
-
-
-
         }
     }
 
@@ -609,15 +606,12 @@ class repository_sword_upload extends repository {
             $authors = $authors . $author . ';';
             $swordpackager->addCreator($author);
         }
-
         foreach ($SESSION->entry['type'] as $type) {
             $swordpackager->addTypes($type);
         }
-        
-        foreach ($SESSION->entry['subject'] as $subject) {
+                foreach ($SESSION->entry['subject'] as $subject) {
             $swordpackager->addSubject($subject);
         }
-
         $swordpackager->addIdentifier($SESSION->entry['url']);
         // $swordpackager->setIdentifierUri($SESSION->entry['url']);
 
@@ -642,7 +636,7 @@ class repository_sword_upload extends repository {
                 'source' => $SESSION->entry['url'],
                 'size' => 0,
                 'author' => $authors,
-                'license'=> $SESSION->entry['license-name'],
+                'license' => $SESSION->entry['license-name'],
                 'thumbnail' => $OUTPUT->pix_url('f/html-32')->out(false)
             );
 
@@ -780,7 +774,7 @@ class repository_sword_upload extends repository {
         foreach ($SESSION->entry['type'] as $type) {
             $swordpackager->addTypes($type);
         }
-                foreach ($SESSION->entry['subject'] as $subject) {
+        foreach ($SESSION->entry['subject'] as $subject) {
             $swordpackager->addSubject($subject);
         }
 
