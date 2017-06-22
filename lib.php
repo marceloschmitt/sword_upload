@@ -52,7 +52,7 @@ class repository_sword_upload extends repository {
 
         $action = optional_param('s_action', '', PARAM_RAW);
 
-        if (optional_param('action','', PARAM_RAW) == 'upload') {
+        if (optional_param('action', '', PARAM_RAW) == 'upload') {
             $action = 'deposit-upload';
         }
 
@@ -92,7 +92,7 @@ class repository_sword_upload extends repository {
             $username->id   = 's_username';
             $username->name = 's_username';
             $username->label = get_string('username', 'repository_sword_upload');
-	    $username->attributes = array('size'=>'16');
+        $username->attributes = array('size'=>'16');
             $form[] = $username;
 
             $password = new stdClass();
@@ -226,7 +226,7 @@ class repository_sword_upload extends repository {
         //$ret['logouttext'] = 'Logout';
         $ret['login_btn_label'] = get_string('next', 'repository_sword_upload');
 
-	$this->get_link("http://poa.ifrs.edu.br");
+    $this->get_link("http://poa.ifrs.edu.br");
         switch ($SESSION->etapa) {
 
             case 'deposit-metadata':
@@ -248,7 +248,7 @@ class repository_sword_upload extends repository {
                 $list = array();
                 $list[] = $this->deposit_process();
                 $ret['list'] = $list;
-	
+    
                 return $ret;
                 break;
 
@@ -285,7 +285,7 @@ class repository_sword_upload extends repository {
         $description->id = 's_description';
         $description->name = 's_description';
         $description->label = get_string('description', 'repository_sword_upload');
-	$description->rows = 20;
+    $description->rows = 20;
         $form[] = $description;
 
         $type = new stdClass();
@@ -489,7 +489,7 @@ class repository_sword_upload extends repository {
 
         global $SESSION, $USER;
 
-	$fullname = $USER->firstname . ' '. $USER->lastname;
+    $fullname = $USER->firstname . ' '. $USER->lastname;
 
         $form = array();
 
@@ -497,7 +497,7 @@ class repository_sword_upload extends repository {
         $author->type = 'text';
         $author->id = 's_author';
         $author->name = 's_author';
-	$author->value = $fullname;
+    $author->value = $fullname;
         $author->label = get_string('author', 'repository_sword_upload');
         $form[] = $author;
 
@@ -530,18 +530,18 @@ class repository_sword_upload extends repository {
 
         global $SESSION;
 
-        $title = trim(optional_param('s_title','',PARAM_RAW));
-        $abstract = trim(optional_param('s_abstract','',PARAM_RAW));
-        $description = trim(optional_param('s_description','',PARAM_RAW));
-        $type = trim(optional_param('s_type','',PARAM_RAW));
-        $subject = trim(optional_param('s_subject','',PARAM_RAW));
-        $language = trim(optional_param('s_language','',PARAM_RAW));
-        $collection = trim(optional_param('s_collection','',PARAM_RAW));
-        $content = trim(optional_param('s_content','',PARAM_RAW));
+        $title = trim(optional_param('s_title', '',PARAM_RAW));
+        $abstract = trim(optional_param('s_abstract', '',PARAM_RAW));
+        $description = trim(optional_param('s_description', '',PARAM_RAW));
+        $type = trim(optional_param('s_type', '',PARAM_RAW));
+        $subject = trim(optional_param('s_subject', '',PARAM_RAW));
+        $language = trim(optional_param('s_language', '',PARAM_RAW));
+        $collection = trim(optional_param('s_collection', '',PARAM_RAW));
+        $content = trim(optional_param('s_content', '',PARAM_RAW));
 
         if (!empty($title) AND !empty($abstract) AND !empty($collection) AND !empty($content) AND !empty($language) AND !empty($type) AND !empty($subject)) {
-            $types = explode(';',$type);
-            $subjects = explode(';',$subject);
+            $types = explode(';', $type);
+            $subjects = explode(';', $subject);
 
             $SESSION->entry = array(
                 'title' => $title,
@@ -575,7 +575,7 @@ class repository_sword_upload extends repository {
         $author = trim(optional_param('s_author', '', PARAM_RAW));
 
         if (!empty($url) AND !empty($license) AND !empty($author)) {
-            $authors = explode(';',$author);
+            $authors = explode(';', $author);
 
             $SESSION->entry['url'] = $url;
             $SESSION->entry['license-name'] = getLicenseTerm($license, 'name-repositorio');
@@ -595,7 +595,7 @@ class repository_sword_upload extends repository {
         global $SESSION, $CFG, $OUTPUT;
         require_once($CFG->dirroot . '/repository/sword_upload/sword1/packager_mets_swap.php');
 
-        $swordpackager = new PackagerMetsSwap($CFG->dirroot . '/repository/sword_upload/temp','files',$CFG->dirroot . '/repository/sword_upload/temp','mets_swap_package.zip');
+        $swordpackager = new PackagerMetsSwap($CFG->dirroot . '/repository/sword_upload/temp', 'files', $CFG->dirroot . '/repository/sword_upload/temp', 'mets_swap_package.zip');
 
         $swordpackager->setTitle($SESSION->entry['title']);
         $swordpackager->setAbstract($SESSION->entry['abstract']);
@@ -607,7 +607,7 @@ class repository_sword_upload extends repository {
         }
 
 
-	$authors = '';
+    $authors = '';
         foreach ($SESSION->entry['author'] as $author) {
             $authors = $authors . $author . ';';
             $swordpackager->addCreator($author);
@@ -616,8 +616,8 @@ class repository_sword_upload extends repository {
         foreach ($SESSION->entry['type'] as $type) {
             $swordpackager->addTypes($type);
         }
-		
-	foreach ($SESSION->entry['subject'] as $subject) {
+        
+    foreach ($SESSION->entry['subject'] as $subject) {
             $swordpackager->addSubject($subject);
         }
 
@@ -640,17 +640,17 @@ class repository_sword_upload extends repository {
             $SESSION->etapa = 'finish';
 
             return array(
-                'title' => $SESSION->entry['title'].' - ' . get_string('click-to-link','repository_sword_upload'),
+                'title' => $SESSION->entry['title'].' - ' . get_string('click-to-link', 'repository_sword_upload'),
                 'url' => $SESSION->entry['url'],
                 'source' => $SESSION->entry['url'],
-		'size' => 0,
-		'author' => $authors,
-		'license'=> $SESSION->entry['license-name'],
-		'thumbnail' => $OUTPUT->pix_url('f/html-32')->out(false)
+        'size' => 0,
+        'author' => $authors,
+        'license'=> $SESSION->entry['license-name'],
+        'thumbnail' => $OUTPUT->pix_url('f/html-32')->out(false)
             );
 
         } else {
-            throw new moodle_exception('upload_error','sword_upload_repositpry');
+            throw new moodle_exception('upload_error', 'sword_upload_repositpry');
         }
 
     }
@@ -744,30 +744,30 @@ class repository_sword_upload extends repository {
 
         if (empty($saveasfilename)) {
             $filename = $_FILES['repo_upload_file']['name'];
-	    $filename = str_replace(' ', '', $filename);
-	    $filename = RetirarAcentos($filename);
+        $filename = str_replace(' ', '', $filename);
+        $filename = RetirarAcentos($filename);
         } else {
             $parts =explode(".", $_FILES['repo_upload_file']['name']);
             $extension = end($parts);
             $extension = strtolower($extension);
             $filename = $saveasfilename.'.'.$extension;
-	    $filename = str_replace(' ', '', $filename);
-	    $filename = RetirarAcentos($filename);
+        $filename = str_replace(' ', '', $filename);
+        $filename = RetirarAcentos($filename);
 
         }
 
         move_uploaded_file($_FILES['repo_upload_file']['tmp_name'], $CFG->dirroot . '/repository/sword_upload/temp/files/'.$filename);
         $pathinfo = pathinfo($CFG->dirroot . '/repository/sword_upload/temp/files/'.$filename);
         $extensao = '.'.strtolower($pathinfo['extension']);
-        $mime_type = get_mimetype($extensao);
+        $mimetype = get_mimetype($extensao);
 
-        $authors = explode(';',$author);
+        $authors = explode(';', $author);
 
         $SESSION->entry['license-name'] = getLicenseTerm($license, 'name-repositorio');
         $SESSION->entry['license-uri'] = getLicenseTerm($license, 'uri');
         $SESSION->entry['author'] = $authors;
 
-        $swordpackager = new PackagerMetsSwap($CFG->dirroot . '/repository/sword_upload/temp','files',$CFG->dirroot . '/repository/sword_upload/temp', 'mets_swap_package.zip');
+        $swordpackager = new PackagerMetsSwap($CFG->dirroot . '/repository/sword_upload/temp', 'files', $CFG->dirroot . '/repository/sword_upload/temp', 'mets_swap_package.zip');
 
         $swordpackager->setTitle($SESSION->entry['title']);
         $swordpackager->setAbstract($SESSION->entry['abstract']);
@@ -775,7 +775,7 @@ class repository_sword_upload extends repository {
         $swordpackager->setLanguage($SESSION->entry['language']);
         if (!empty($SESSION->entry['license-uri'])) {
             $swordpackager->addRights($SESSION->entry['license-name']);
-            //$swordpackager->setRightsUri($SESSION->entry['license-uri']);
+            // $swordpackager->setRightsUri($SESSION->entry['license-uri']);
         }
 
         foreach ($SESSION->entry['author'] as $author) {
@@ -785,12 +785,12 @@ class repository_sword_upload extends repository {
         foreach ($SESSION->entry['type'] as $type) {
             $swordpackager->addTypes($type);
         }
-		
-		foreach ($SESSION->entry['subject'] as $subject) {
+        
+        foreach ($SESSION->entry['subject'] as $subject) {
             $swordpackager->addSubject($subject);
         }
 
-        $swordpackager->addFile($filename, $mime_type);
+        $swordpackager->addFile($filename, $mimetype);
 
         $swordpackager->create();
 
@@ -799,7 +799,6 @@ class repository_sword_upload extends repository {
             $CFG->dirroot . '/repository/sword_upload/temp/mets_swap_package.zip',
             'http://purl.org/net/sword-types/METSDSpaceSIP',
             'application/zip');
-
 
         if (($testdr->sac_status >= 200) || ($testdr->sac_status < 300)) {
             copy($CFG->dirroot . '/repository/sword_upload/temp/files/mets.xml', $CFG->dirroot . '/repository/sword_upload/temp/files/mets-bak.xml');

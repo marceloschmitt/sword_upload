@@ -33,7 +33,7 @@ function get_instructions() {
         <p style="text-align: left !important; margin-left: 5px !important;">
         Caso tenha selecionado "link", informe o link, sslecione a licença e os autores</p>
     </div>
-TEXT;
+    TEXT;
     return $instructionstext;
 }
 
@@ -105,8 +105,12 @@ function licences_select_moodle() {
 }
 
 function retirarar_acentos($frase) {
-    $frase = str_replace(array("à", "á", "â", "ã", "ä", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ò", "ó", "ô", "õ", "ö", "ù", "ú", "û", "ü", "À", "Á", "Â", "Ã", "Ä", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ò", "Ó", "Ô", "Õ", "Ö", "Ù", "Ú", "Û", "Ü", "ç", "Ç", "ñ", "Ñ"),
-                         array("a", "a", "a", "a", "a", "e", "e", "e", "e", "i", "i", "i", "i", "o", "o", "o", "o", "o", "u", "u", "u", "u", "A", "A", "A", "A", "A", "E", "E", "E", "E", "I", "I", "I", "O", "O", "O", "O", "O", "U", "U", "U", "U", "c", "C", "n", "N"), $frase);
+    $frase = str_replace(array("à", "á", "â", "ã", "ä", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ò", "ó", "ô",
+        "õ", "ö", "ù", "ú", "û", "ü", "À", "Á", "Â", "Ã", "Ä", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ò", "Ó", "Ô",
+        "Õ", "Ö", "Ù", "Ú", "Û", "Ü", "ç", "Ç", "ñ", "Ñ"),
+                         array("a", "a", "a", "a", "a", "e", "e", "e", "e", "i", "i", "i", "i", "o", "o", "o",
+        "o", "o", "u", "u", "u", "u", "A", "A", "A", "A", "A", "E", "E", "E", "E", "I", "I", "I",
+         "O", "O", "O", "O", "O", "U", "U", "U", "U", "c", "C", "n", "N"), $frase);
 
     return $frase;
 }
