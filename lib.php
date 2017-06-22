@@ -530,7 +530,7 @@ class repository_sword_upload extends repository {
 
         $title = trim(optional_param('s_title', '', PARAM_RAW));
         $abstract = trim(optional_param('s_abstract', '', PARAM_RAW));
-        $description = trim(optional_param('s_description', '',P ARAM_RAW));
+        $description = trim(optional_param('s_description', '', PARAM_RAW));
         $type = trim(optional_param('s_type', '', PARAM_RAW));
         $subject = trim(optional_param('s_subject', '', PARAM_RAW));
         $language = trim(optional_param('s_language', '', PARAM_RAW));
