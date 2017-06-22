@@ -33,7 +33,7 @@ function get_instructions() {
         <p style="text-align: left !important; margin-left: 5px !important;">
         Caso tenha selecionado "link", informe o link, sslecione a licença e os autores</p>
     </div>
-    TEXT;
+TEXT;
     return $instructionstext;
 }
 
